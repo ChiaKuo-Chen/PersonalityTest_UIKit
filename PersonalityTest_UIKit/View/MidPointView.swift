@@ -147,34 +147,34 @@ class MidPointView: UIView {
         
         // Auto Layout for questionView
             questionView.centerXAnchor.constraint(equalTo: VStack.centerXAnchor),
-            questionView.widthAnchor.constraint(equalToConstant: 360),
-            questionView.heightAnchor.constraint(equalToConstant: 254.5)
+            questionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+            questionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25),
         ])
     
         // Auto Layout for choice buttons
         if midPoint.choiceString.count > 2 {
             NSLayoutConstraint.activate([
-                choiceButton0.widthAnchor.constraint(equalToConstant: 360),
-                choiceButton0.heightAnchor.constraint(equalToConstant: 60),
+                choiceButton0.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+                choiceButton0.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06),
                 choiceButton0.bottomAnchor.constraint(equalTo: choiceButton1.topAnchor, constant: -30),
                 
-                choiceButton1.widthAnchor.constraint(equalToConstant: 360),
-                choiceButton1.heightAnchor.constraint(equalToConstant: 60),
+                choiceButton1.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+                choiceButton1.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06),
                 choiceButton1.bottomAnchor.constraint(equalTo: choiceButton2.topAnchor, constant: -30),
 
-                choiceButton2.widthAnchor.constraint(equalToConstant: 360),
-                choiceButton2.heightAnchor.constraint(equalToConstant: 60),
+                choiceButton2.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+                choiceButton2.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06),
                 choiceButton2.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -50)
 
             ])
         } else {
             NSLayoutConstraint.activate([
-                choiceButton0.widthAnchor.constraint(equalToConstant: 360),
-                choiceButton0.heightAnchor.constraint(equalToConstant: 60),
+                choiceButton0.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+                choiceButton0.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06),
                 choiceButton0.bottomAnchor.constraint(equalTo: choiceButton1.topAnchor, constant: -30),
                 
-                choiceButton1.widthAnchor.constraint(equalToConstant: 360),
-                choiceButton1.heightAnchor.constraint(equalToConstant: 60),
+                choiceButton1.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+                choiceButton1.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06),
                 choiceButton1.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -50)
             ])
         }

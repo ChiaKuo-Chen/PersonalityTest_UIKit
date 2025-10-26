@@ -116,9 +116,9 @@ class FriendsCardView: UIView {
             // Wooden background board centered on the view
             woodenBoard.centerXAnchor.constraint(equalTo: centerXAnchor),
             woodenBoard.centerYAnchor.constraint(equalTo: centerYAnchor),
-            woodenBoard.widthAnchor.constraint(equalToConstant: 360),
-            woodenBoard.heightAnchor.constraint(equalToConstant: 180),
-            
+            woodenBoard.widthAnchor.constraint(equalTo: widthAnchor),
+            woodenBoard.heightAnchor.constraint(equalTo: heightAnchor),
+
             // Inner card content (title + friends)
             cardVstackView.topAnchor.constraint(equalTo: woodenBoard.topAnchor, constant: 6),
             cardVstackView.leadingAnchor.constraint(equalTo: woodenBoard.leadingAnchor, constant: 6),

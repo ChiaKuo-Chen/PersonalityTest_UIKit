@@ -124,8 +124,8 @@ class CoverView: UIView {
             titleView.centerXAnchor.constraint(equalTo: vStack.centerXAnchor),
             
             // Start button size and bottom margin
-            startButton.widthAnchor.constraint(equalToConstant: 360),
-            startButton.heightAnchor.constraint(equalToConstant: 60),
+            startButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+            startButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07),
             startButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -100),
             
             // Equal spacer heights for balanced layout

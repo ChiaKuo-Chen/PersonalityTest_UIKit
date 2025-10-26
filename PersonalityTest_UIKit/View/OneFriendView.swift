@@ -96,6 +96,7 @@ class OneFriendView: UIView {
             vstackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             // Fix the size of the animal image view
+            
             animalImageView.widthAnchor.constraint(equalToConstant: 80),
             animalImageView.heightAnchor.constraint(equalTo: animalImageView.widthAnchor)
         ])

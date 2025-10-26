@@ -112,7 +112,7 @@ class RarityView: UIView {
     private func layout() {
         NSLayoutConstraint.activate([
             // Rarity label size
-            rarityImageView.widthAnchor.constraint(equalToConstant: 80),
+            rarityImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.23),
             rarityImageView.heightAnchor.constraint(equalToConstant: 70),
 
             // Star container height

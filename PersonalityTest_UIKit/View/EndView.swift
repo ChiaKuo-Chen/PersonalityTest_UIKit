@@ -139,25 +139,24 @@ class EndView: UIView {
             vStack.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
 
             // Subview constraints for consistent layout proportions
-            upperView.heightAnchor.constraint(equalToConstant: 180),
             upperView.leadingAnchor.constraint(equalTo: vStack.leadingAnchor),
             upperView.trailingAnchor.constraint(equalTo: vStack.trailingAnchor),
+            upperView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
 
-            rarityView.heightAnchor.constraint(equalToConstant: 70),
+            rarityView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.075),
             rarityView.leadingAnchor.constraint(equalTo: vStack.leadingAnchor),
             rarityView.trailingAnchor.constraint(equalTo: vStack.trailingAnchor),
             
-            discriptionView.widthAnchor.constraint(equalToConstant: 360),
-            discriptionView.heightAnchor.constraint(equalToConstant: 180),
-            
-            friendsCardView.leadingAnchor.constraint(equalTo: vStack.leadingAnchor),
-            friendsCardView.trailingAnchor.constraint(equalTo: vStack.trailingAnchor),
-            friendsCardView.heightAnchor.constraint(equalToConstant: 180),
+            discriptionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+            discriptionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
 
-            backButton.widthAnchor.constraint(equalToConstant: 360),
-            backButton.heightAnchor.constraint(equalToConstant: 30),
+            friendsCardView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+            friendsCardView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
 
-            authorLabel.heightAnchor.constraint(equalToConstant: 30)
+            backButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+            backButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.03),
+
+            authorLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.03),
         ])
     }
 
