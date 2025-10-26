@@ -13,9 +13,9 @@
 ## 🎮 操作示意圖
 <div style="display: flex; justify-content: space-between;">
   <img src="assets/demo0.png" width="16%" />
+  <img src="assets/demo1.png" width="16%" />
   <img src="assets/demo2.png" width="16%" />
   <img src="assets/demo3.png" width="16%" />
-  <img src="assets/demo4.png" width="16%" />
 </div>
 
 
