@@ -10,6 +10,13 @@
 🔹 Navigation Flow：以 UINavigationController 管理多層問答與結果頁
 🔹 Data-Driven：題目與結果均由 Model 控制，易於擴充
 
+## 🎮 操作示意圖
+<div style="display: flex; justify-content: space-between;">
+  <img src="assets/demo0.png" width="16%" />
+  <img src="assets/demo2.png" width="16%" />
+  <img src="assets/demo3.png" width="16%" />
+  <img src="assets/demo4.png" width="16%" />
+</div>
 
 
 ## 🚀 How to Run
