@@ -14,6 +14,7 @@
 <div style="display: flex; justify-content: space-between;">
   <img src="assets/demo0.jpg" width="16%" />
   <img src="assets/demo1.jpg" width="16%" />
+  <img src="assets/demo4.jpg" width="16%" />
   <img src="assets/demo2.jpg" width="16%" />
   <img src="assets/demo3.jpg" width="16%" />
 </div>
