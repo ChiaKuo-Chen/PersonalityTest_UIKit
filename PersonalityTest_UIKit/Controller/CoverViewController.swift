@@ -26,19 +26,38 @@ class CoverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         coverView.startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+
+        // Add Button
+        navigationItem.rightBarButtonItem = .woodenQuestionItem(
+            target: self,
+            action: #selector(showSettings)
+        )
     }
     
-    // Hide the navigation bar when appearing
+    // Show the navigation bar when appearing
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
+    // Hide the navigation bar when appearing
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     // MARK: - Actions
-    
     // Navigate to the first midpoint view when the start button is tapped
     @objc private func startButtonTapped() {
         let nextViewController = MidPointViewController(midPoint: MidPointData[0])
         navigationController?.pushViewController(nextViewController, animated: true)
     }
+    
+    // Navigate to the SettingViewController
+    @objc private func showSettings() {
+        let settingsVC = DetailsViewController()
+        present(settingsVC, animated: true)
+    }
+
+    
 }
