@@ -55,7 +55,7 @@ class EndView: UIView {
     private let backgroundImageView = UIImageView()
     private var upperView: UpperEndView!
     private var rarityView: RarityView!
-    private var discriptionView = UIView()
+    private var descriptionView = UIView()
     private var friendsCardView: FriendsCardView!
     private var authorLabel = UILabel()
     var backButton = TwoColorUIButton()
@@ -81,17 +81,17 @@ class EndView: UIView {
         backgroundImageView.contentMode = .scaleAspectFill
 
         // Description (woodenUIView with animal description text)
-        discriptionView = woodenUIView(labelText: animal.description, horizontalPadding: 12)
+        descriptionView = WoodenUIView(labelText: animal.description, horizontalPadding: 12)
 
         // Author label at the bottom of the screen
         authorLabel.text = "Presented by Chia-Kuo Chen"
-        authorLabel.font = .systemFont(ofSize: 22, weight: .black)
+        authorLabel.font = .systemFont(ofSize: Device.isPad ? 26 : 22, weight: .black)
         authorLabel.textColor = .white
         authorLabel.textAlignment = .center
 
         // Back button ("Return to Home") styling
         backButton.setTitle("回到首頁", for: .normal)
-        backButton.fontSize = 20
+        backButton.fontSize = Device.isPad ? 36 : 24
         backButton.strokeWidth = 2
         backButton.cornerRadius = 12.5
     }
@@ -99,7 +99,7 @@ class EndView: UIView {
     // MARK: - Layout
     private func layout() {
         // Disable AutoresizingMask
-        [backgroundImageView, upperView, rarityView, discriptionView, friendsCardView, backButton, authorLabel].forEach {
+        [backgroundImageView, upperView, rarityView, descriptionView, friendsCardView, backButton, authorLabel].forEach {
             $0?.translatesAutoresizingMaskIntoConstraints = false
         }
 
@@ -108,21 +108,21 @@ class EndView: UIView {
         sendSubviewToBack(backgroundImageView)
 
         // Main vertical stack containing all major UI elements
-        let vStack = UIStackView(arrangedSubviews: [
+        let VStack = UIStackView(arrangedSubviews: [
             upperView,
             rarityView,
-            discriptionView,
+            descriptionView,
             friendsCardView,
             backButton,
             authorLabel
         ])
-        vStack.axis = .vertical
-        vStack.alignment = .center
-        vStack.distribution = .fill
-        vStack.spacing = 20
-        vStack.translatesAutoresizingMaskIntoConstraints = false
+        VStack.axis = .vertical
+        VStack.alignment = .center
+        VStack.distribution = .fill
+        VStack.spacing = Device.isPad ? 30 : 20
+        VStack.translatesAutoresizingMaskIntoConstraints = false
 
-        addSubview(vStack)
+        addSubview(VStack)
         
         // Apply Auto Layout constraints
         NSLayoutConstraint.activate([
@@ -133,30 +133,30 @@ class EndView: UIView {
             backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
 
             // Main StackView anchors
-            vStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            vStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            vStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            vStack.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            VStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            VStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            VStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            VStack.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
 
             // Subview constraints for consistent layout proportions
-            upperView.leadingAnchor.constraint(equalTo: vStack.leadingAnchor),
-            upperView.trailingAnchor.constraint(equalTo: vStack.trailingAnchor),
-            upperView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
+            upperView.leadingAnchor.constraint(equalTo: VStack.leadingAnchor),
+            upperView.trailingAnchor.constraint(equalTo: VStack.trailingAnchor),
+            upperView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Device.isPad ? 0.25 : 0.2),
 
             rarityView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.075),
-            rarityView.leadingAnchor.constraint(equalTo: vStack.leadingAnchor),
-            rarityView.trailingAnchor.constraint(equalTo: vStack.trailingAnchor),
+            rarityView.leadingAnchor.constraint(equalTo: VStack.leadingAnchor),
+            rarityView.trailingAnchor.constraint(equalTo: VStack.trailingAnchor),
             
-            discriptionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
-            discriptionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
+            descriptionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+            descriptionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Device.isPad ? 0.22 : 0.18),
 
             friendsCardView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
-            friendsCardView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
+            friendsCardView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Device.isPad ? 0.25 : 0.2),
 
             backButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
-            backButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.03),
+            backButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Device.isPad ? 0.05 : 0.03),
 
-            authorLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.03),
+            authorLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Device.isPad ? 0.04 : 0.03)
         ])
     }
 

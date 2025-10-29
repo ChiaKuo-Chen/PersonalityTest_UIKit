@@ -41,7 +41,7 @@ class FriendsCardView: UIView {
     private var animal: Animal
 
     // MARK: - UI Components
-    private let woodenBoard = woodenUIView(labelText: "")
+    private let woodenBoard = WoodenUIView(labelText: "")
     private let title = UILabel()
     private let cardVstackView = UIStackView()
     private let friendHstackView = UIStackView()
@@ -70,18 +70,18 @@ class FriendsCardView: UIView {
 
         // Title label configuration
         title.text = "動物好朋友"
-        title.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        title.font = UIFont.systemFont(ofSize: Device.isPad ? 38 : 24, weight: .bold)
         title.textColor = .white
         title.textAlignment = .center
         title.shadowColor = .black
-        title.shadowOffset = CGSize(width: 0, height: 2)
+        title.shadowOffset = Device.isPad ? CGSize(width: 0, height: 4) : CGSize(width: 0, height: 2)
         title.translatesAutoresizingMaskIntoConstraints = false
 
         // Hstack view for displaying friend icons
         friendHstackView.axis = .horizontal
         friendHstackView.alignment = .center
         friendHstackView.distribution = .fill
-        friendHstackView.spacing = 20
+        friendHstackView.spacing = Device.isPad ? 40 : 20
         friendHstackView.translatesAutoresizingMaskIntoConstraints = false
         
         // Add the first two friends
@@ -97,7 +97,7 @@ class FriendsCardView: UIView {
         cardVstackView.axis = .vertical
         cardVstackView.alignment = .center
         friendHstackView.distribution = .fillProportionally
-        cardVstackView.spacing = 12
+        cardVstackView.spacing = Device.isPad ? 20 : 12
         cardVstackView.translatesAutoresizingMaskIntoConstraints = false
         
         // Add subviews
@@ -120,8 +120,8 @@ class FriendsCardView: UIView {
             woodenBoard.heightAnchor.constraint(equalTo: heightAnchor),
 
             // Inner card content (title + friends)
-            cardVstackView.topAnchor.constraint(equalTo: woodenBoard.topAnchor, constant: 6),
-            cardVstackView.leadingAnchor.constraint(equalTo: woodenBoard.leadingAnchor, constant: 6),
+            cardVstackView.topAnchor.constraint(equalTo: woodenBoard.topAnchor, constant: Device.isPad ? 14 : 6),
+            cardVstackView.leadingAnchor.constraint(equalTo: woodenBoard.leadingAnchor, constant: Device.isPad ? 14 : 6),
             cardVstackView.trailingAnchor.constraint(equalTo: woodenBoard.trailingAnchor, constant: -3),
             cardVstackView.bottomAnchor.constraint(equalTo: woodenBoard.bottomAnchor, constant: -3),
 

@@ -62,7 +62,7 @@ class RarityView: UIView {
         rarityHStackView.axis = .horizontal
         rarityHStackView.alignment = .center
         rarityHStackView.distribution = .fill
-        rarityHStackView.spacing = 10
+        rarityHStackView.spacing = Device.isPad ? 16 : 10
         rarityHStackView.translatesAutoresizingMaskIntoConstraints = false
 
         // Star container stack
@@ -95,8 +95,8 @@ class RarityView: UIView {
                 starImage.trailingAnchor.constraint(equalTo: starWithShadow.trailingAnchor),
                 starImage.topAnchor.constraint(equalTo: starWithShadow.topAnchor),
                 starImage.bottomAnchor.constraint(equalTo: starWithShadow.bottomAnchor),
-                starWithShadow.widthAnchor.constraint(equalToConstant: 45),
-                starWithShadow.heightAnchor.constraint(equalToConstant: 45)
+                starWithShadow.widthAnchor.constraint(equalToConstant: Device.isPad ? 60 : 45),
+                starWithShadow.heightAnchor.constraint(equalToConstant: Device.isPad ? 60 : 45)
             ])
 
             starHStackView.addArrangedSubview(starWithShadow)

@@ -39,11 +39,13 @@ class UpperEndView: UIView {
     private let upperView = UIStackView()
     // Vstack containing three text rows.
     private let titleVStackView = UIStackView()
+    // Spacer for IPad Device.
+    private var ipadSpacer = UIView()
     // Circular animal image on the right side.
     private var animalImageView = UIView()
     
     // Top wooden label displaying "你的內心住著..."
-    private let topLabel = woodenUIView(labelText: "你的內心住著...",
+    private let topLabel = WoodenUIView(labelText: "你的內心住著...",
                                         labelSize: 20, verticalPadding: 4, horizontalPadding: 8)
     // Center title label (animal title)
     private var titleLabel = UIView()
@@ -70,13 +72,13 @@ class UpperEndView: UIView {
         // Main Hstack
         upperView.axis = .horizontal
         upperView.alignment = .center
-        upperView.spacing = 12
+        upperView.spacing = Device.isPad ? 24 : 12
         upperView.translatesAutoresizingMaskIntoConstraints = false
         
         // Title VStack
         titleVStackView.axis = .vertical
         titleVStackView.alignment = .center
-        titleVStackView.spacing = 8
+        titleVStackView.spacing = Device.isPad ? 12 : 8
         titleVStackView.translatesAutoresizingMaskIntoConstraints = false
         
         // MARK: - Top HStack (left-aligned)
@@ -90,12 +92,7 @@ class UpperEndView: UIView {
         hstack0.addArrangedSubview(topLabel)
         hstack0.addArrangedSubview(spacer0)
         titleVStackView.addArrangedSubview(hstack0)
-        
-        NSLayoutConstraint.activate([
-            hstack0.leadingAnchor.constraint(equalTo: titleVStackView.leadingAnchor),
-            hstack0.trailingAnchor.constraint(equalTo: titleVStackView.trailingAnchor)
-        ])
-        
+                
         // MARK: - Center title
         titleVStackView.addArrangedSubview(titleLabel)
         
@@ -112,38 +109,46 @@ class UpperEndView: UIView {
         titleVStackView.addArrangedSubview(hstack1)
         
         NSLayoutConstraint.activate([
+            hstack0.leadingAnchor.constraint(equalTo: titleVStackView.leadingAnchor),
+            hstack0.trailingAnchor.constraint(equalTo: titleVStackView.trailingAnchor),
+
             hstack1.leadingAnchor.constraint(equalTo: titleVStackView.leadingAnchor),
-            hstack1.trailingAnchor.constraint(equalTo: titleVStackView.trailingAnchor)
+            hstack1.trailingAnchor.constraint(equalTo: titleVStackView.trailingAnchor),
         ])
         
         // MARK: - Animal image
-        animalImageView = AnimalView(animalName: animal.name)
+        animalImageView = AnimalView(animalName: animal.name, size: Device.isPad ? 220 : 180)
         animalImageView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     // MARK: - Layout
     private func layout() {
         upperView.addArrangedSubview(titleVStackView)
+        upperView.addArrangedSubview(ipadSpacer)
         upperView.addArrangedSubview(animalImageView)
         addSubview(upperView)
         
         NSLayoutConstraint.activate([
-            upperView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 6),
-            upperView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -6),
+            upperView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Device.isPad ? 166 : 6),
+            upperView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Device.isPad ? -166 : -6),
             upperView.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            topLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 28),
-            titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 45),
-            bottomLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 28)
+            topLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Device.isPad ? 36 : 28),
+            titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Device.isPad ? 60 : 45),
+            bottomLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Device.isPad ? 38 : 28),
+            
+            ipadSpacer.widthAnchor.constraint(equalToConstant: Device.isPad ? 80 : 0)
         ])
     }
     
     // MARK: - Update Data
     func loadAnimal(with animal: Animal) {
         self.animal = animal
-        titleLabel = woodenUIView(labelText: animal.title, labelSize: 45,
+        titleLabel = WoodenUIView(labelText: animal.title,
+                                  labelSize: Device.isPad ? 55 : 45,
                                   verticalPadding: 6, horizontalPadding: 10)
-        bottomLabel = woodenUIView(labelText: animal.overview, labelSize: 20,
+        bottomLabel = WoodenUIView(labelText: animal.overview,
+                                   labelSize: Device.isPad ? 28 : 20,
                                    verticalPadding: 4, horizontalPadding: 8)
         animalImageView = AnimalView(animalName: animal.name)
     }

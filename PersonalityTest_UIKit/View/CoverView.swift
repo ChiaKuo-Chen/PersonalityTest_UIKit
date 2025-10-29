@@ -49,7 +49,7 @@ class CoverView: UIView {
     
     // MARK: - Style
     private func style() {
-        
+
         // Background setup
         backgroundImageView.image = UIImage(named: "BackGround")
         backgroundImageView.contentMode = .scaleAspectFill
@@ -58,12 +58,13 @@ class CoverView: UIView {
         titleView.axis = .horizontal
         titleView.alignment = .center
         titleView.distribution = .fill
-        titleView.spacing = 20
+        titleView.spacing = Device.isPad ? 40 : 20
         
         // Create title “動物占卜” with woodenUIView components
         let titleString = "動物占卜"
         for char in titleString {
-            let charView = woodenUIView(labelText: String(char), labelSize: 60)
+            let labelSize: CGFloat = Device.isPad ? 100 : 60
+            let charView = WoodenUIView(labelText: String(char), labelSize: labelSize)
             titleView.addArrangedSubview(charView)
         }
         
@@ -71,12 +72,13 @@ class CoverView: UIView {
         startButton.topColor = UIColor(hex: "#33B94D")
         startButton.bottomColor = UIColor(hex: "#009432")
         startButton.setTitle("測測看你是哪種動物？", for: .normal)
-        startButton.fontSize = 24
+        startButton.fontSize = Device.isPad ? 36 : 24
         startButton.strokeWidth = 2
     }
     
     // MARK: - Layout
     private func layout() {
+        
         // Disable AutoresizingMask
         [backgroundImageView, titleView, startButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -102,8 +104,8 @@ class CoverView: UIView {
         vStack.axis = .vertical
         vStack.alignment = .center
         vStack.distribution = .fill
-        vStack.spacing = 40
-
+        vStack.spacing = Device.isPad ? 80 : 40
+        
         addSubview(vStack)
         
         // Auto Layout Constraints
@@ -124,10 +126,10 @@ class CoverView: UIView {
             titleView.centerXAnchor.constraint(equalTo: vStack.centerXAnchor),
             
             // Start button size and bottom margin
-            startButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
-            startButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07),
-            startButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -100),
-            
+            startButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Device.isPad ? 0.6 : 0.9),
+            startButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: Device.isPad ? 0.08 : 0.07),
+            startButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: Device.isPad ? -150 : -100),
+
             // Equal spacer heights for balanced layout
             spacer0.heightAnchor.constraint(equalTo: spacer1.heightAnchor)
         ])

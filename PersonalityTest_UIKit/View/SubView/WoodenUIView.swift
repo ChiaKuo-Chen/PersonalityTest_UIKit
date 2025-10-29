@@ -28,7 +28,7 @@
 
 import UIKit
 
-func woodenUIView(labelText: String, labelSize: CGFloat = 30, labelColor: UIColor = .white,
+func WoodenUIView(labelText: String, labelSize: CGFloat = 30, labelColor: UIColor = .white,
                   verticalPadding: CGFloat = 8, horizontalPadding: CGFloat = 8) -> UIView {
 
     // Shadow container
@@ -36,31 +36,34 @@ func woodenUIView(labelText: String, labelSize: CGFloat = 30, labelColor: UIColo
     shadowView.translatesAutoresizingMaskIntoConstraints = false
     
     // Label setup
-    let questionLabel = WoodenUILabel(
-        verticalPadding: verticalPadding,
-        horizontalPadding: horizontalPadding
+    let label = WoodenUILabel(
+        verticalPadding: Device.isPad ? verticalPadding * 1.6 : verticalPadding,
+        horizontalPadding: Device.isPad ? horizontalPadding * 1.6 : horizontalPadding
     )
-    questionLabel.text = labelText
-    questionLabel.font = UIFont.systemFont(ofSize: labelSize, weight: .bold)
-    questionLabel.textColor = labelColor
-    questionLabel.numberOfLines = 0
-    questionLabel.translatesAutoresizingMaskIntoConstraints = false
-    questionLabel.textAlignment = .justified
-    
+    label.text = labelText
+    label.font = UIFont.systemFont(ofSize: Device.isPad ? labelSize * 1.4 : labelSize, weight: .bold)
+    label.textColor = labelColor
+    label.numberOfLines = 0
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.textAlignment = .justified
+    label.adjustsFontSizeToFitWidth = true
+    label.minimumScaleFactor = 0.7
+
     // Embed label into the shadow container
-    shadowView.addSubview(questionLabel)
+    shadowView.addSubview(label)
     
     // Label fills the entire shadow view
     NSLayoutConstraint.activate([
-        questionLabel.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor),
-        questionLabel.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor),
-        questionLabel.topAnchor.constraint(equalTo: shadowView.topAnchor),
-        questionLabel.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor)
+        label.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor),
+        label.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor),
+        label.topAnchor.constraint(equalTo: shadowView.topAnchor),
+        label.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor)
     ])
     
     return shadowView
 }
 
+// Wooden label used only in WoodenUIView。
 // MARK: - Wooden UILabel (Private)
 // A custom UILabel subclass styled like a wooden sign:
 // orange background, rounded corners, white bold text, and inner padding.
@@ -87,9 +90,9 @@ private class WoodenUILabel: UILabel {
         textAlignment = .center
         textColor = .white
         shadowColor = UIColor.black
-        shadowOffset = CGSize(width: 0, height: 4)
+        shadowOffset = Device.isPad ? CGSize(width: 0, height: 6) : CGSize(width: 0, height: 4)
         backgroundColor = UIColor(hex: "#cd6133")
-        layer.cornerRadius = 15
+        layer.cornerRadius = Device.isPad ? 25 : 15
         layer.masksToBounds = true
     }
     

@@ -46,7 +46,7 @@ class OneFriendView: UIView {
         // 初始化 AnimalView
         self.animalImageView = AnimalView(
             animalName: animal.name,
-            size: 80,
+            size: Device.isPad ? 130 : 80,
             borderWidth: 2,
             mainCharacter: false
         )
@@ -67,16 +67,16 @@ class OneFriendView: UIView {
         vstackView.axis = .vertical
         vstackView.alignment = .center
         vstackView.distribution = .equalCentering
-        vstackView.spacing = 5
+        vstackView.spacing = Device.isPad ? 10 : 5
         vstackView.translatesAutoresizingMaskIntoConstraints = false
         
         // Title Label setup
         titleLabel.text = animal.title
-        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        titleLabel.font = UIFont.systemFont(ofSize: Device.isPad ? 30 : 20, weight: .bold)
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
         titleLabel.shadowColor = .gray
-        titleLabel.shadowOffset = CGSize(width: 0, height: 2)
+        titleLabel.shadowOffset = Device.isPad ? CGSize(width: 0, height: 3) : CGSize(width: 0, height: 2)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // Animal ImageView setup
@@ -97,7 +97,7 @@ class OneFriendView: UIView {
             
             // Fix the size of the animal image view
             
-            animalImageView.widthAnchor.constraint(equalToConstant: 80),
+            animalImageView.widthAnchor.constraint(equalToConstant: Device.isPad ? 130 : 80),
             animalImageView.heightAnchor.constraint(equalTo: animalImageView.widthAnchor)
         ])
     }

@@ -60,7 +60,7 @@ class MidPointView: UIView {
     init(midPoint: MidPoint) {
         self.midPoint = midPoint
         super.init(frame: .zero)
-        questionView = woodenUIView(labelText: midPoint.title)
+        questionView = WoodenUIView(labelText: midPoint.title)
         style()
         layout()
     }
@@ -71,7 +71,7 @@ class MidPointView: UIView {
 
     // MARK: - Style
     private func style() {
-        
+
         // Setup background
         if let bgImage = UIImage(named: "BackGround") {
             backgroundImageView = UIImageView(image: bgImage)
@@ -85,18 +85,24 @@ class MidPointView: UIView {
         questionView.translatesAutoresizingMaskIntoConstraints = false
         
         // Setup choice buttons
+        let fontSize: CGFloat = Device.isPad ? 36 : 24
+        let strokeWidth: CGFloat = Device.isPad ? 3 : 2
+
         choiceButton0.setTitle(midPoint.choiceString[0], for: .normal)
-        choiceButton0.strokeWidth = 2
+        choiceButton0.fontSize = fontSize
+        choiceButton0.strokeWidth = strokeWidth
         choiceButton0.translatesAutoresizingMaskIntoConstraints = false
         
         choiceButton1.setTitle(midPoint.choiceString[1], for: .normal)
-        choiceButton1.strokeWidth = 2
+        choiceButton1.fontSize = fontSize
+        choiceButton1.strokeWidth = strokeWidth
 
         choiceButton1.translatesAutoresizingMaskIntoConstraints = false
         
         if midPoint.choiceString.count > 2 {
             choiceButton2.setTitle(midPoint.choiceString[2], for: .normal)
-            choiceButton2.strokeWidth = 2
+            choiceButton2.fontSize = fontSize
+            choiceButton2.strokeWidth = strokeWidth
             choiceButton2.translatesAutoresizingMaskIntoConstraints = false
         }
 
@@ -106,13 +112,12 @@ class MidPointView: UIView {
     private func layout() {
         guard let background = backgroundImageView else { return }
         
-        
         // Setup VSTack
         let VStack = UIStackView()
         VStack.axis = .vertical
         VStack.alignment = .center
         VStack.distribution = .fill
-        VStack.spacing = 20
+        VStack.spacing = Device.isPad ? 40 : 20
         VStack.translatesAutoresizingMaskIntoConstraints = false
         
         // Spacers for layout balance
@@ -132,6 +137,14 @@ class MidPointView: UIView {
 
         addSubview(VStack)
         
+        // Common size multipliers
+        let boardWidthMultiplier: CGFloat = Device.isPad ? 0.7 : 0.9
+        let boardHeightMultiplier: CGFloat = Device.isPad ? 0.3 : 0.25
+        let buttonWidthMultiplier: CGFloat = Device.isPad ? 0.6 : 0.9
+        let buttonHeightMultiplier: CGFloat = Device.isPad ? 0.08 : 0.06
+        let buttonSpacing: CGFloat = Device.isPad ? -40 : -30
+        let bottomPadding: CGFloat = Device.isPad ? -100 : -50
+
         // Fill entire View with background
         NSLayoutConstraint.activate([
             background.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -147,37 +160,37 @@ class MidPointView: UIView {
         
         // Auto Layout for questionView
             questionView.centerXAnchor.constraint(equalTo: VStack.centerXAnchor),
-            questionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
-            questionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25),
+            questionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: boardWidthMultiplier),
+            questionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: boardHeightMultiplier),
         ])
     
-        // Auto Layout for choice buttons
+        // Buttons constraints
         if midPoint.choiceString.count > 2 {
             NSLayoutConstraint.activate([
-                choiceButton0.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
-                choiceButton0.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06),
-                choiceButton0.bottomAnchor.constraint(equalTo: choiceButton1.topAnchor, constant: -30),
+                choiceButton0.widthAnchor.constraint(equalTo: widthAnchor, multiplier: buttonWidthMultiplier),
+                choiceButton0.heightAnchor.constraint(equalTo: heightAnchor, multiplier: buttonHeightMultiplier),
+                choiceButton0.bottomAnchor.constraint(equalTo: choiceButton1.topAnchor, constant: buttonSpacing),
                 
-                choiceButton1.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
-                choiceButton1.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06),
-                choiceButton1.bottomAnchor.constraint(equalTo: choiceButton2.topAnchor, constant: -30),
-
-                choiceButton2.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
-                choiceButton2.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06),
-                choiceButton2.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -50)
-
+                choiceButton1.widthAnchor.constraint(equalTo: widthAnchor, multiplier: buttonWidthMultiplier),
+                choiceButton1.heightAnchor.constraint(equalTo: heightAnchor, multiplier: buttonHeightMultiplier),
+                choiceButton1.bottomAnchor.constraint(equalTo: choiceButton2.topAnchor, constant: buttonSpacing),
+                
+                choiceButton2.widthAnchor.constraint(equalTo: widthAnchor, multiplier: buttonWidthMultiplier),
+                choiceButton2.heightAnchor.constraint(equalTo: heightAnchor, multiplier: buttonHeightMultiplier),
+                choiceButton2.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: bottomPadding)
             ])
         } else {
             NSLayoutConstraint.activate([
-                choiceButton0.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
-                choiceButton0.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06),
-                choiceButton0.bottomAnchor.constraint(equalTo: choiceButton1.topAnchor, constant: -30),
+                choiceButton0.widthAnchor.constraint(equalTo: widthAnchor, multiplier: buttonWidthMultiplier),
+                choiceButton0.heightAnchor.constraint(equalTo: heightAnchor, multiplier: buttonHeightMultiplier),
+                choiceButton0.bottomAnchor.constraint(equalTo: choiceButton1.topAnchor, constant: buttonSpacing),
                 
-                choiceButton1.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
-                choiceButton1.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06),
-                choiceButton1.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -50)
+                choiceButton1.widthAnchor.constraint(equalTo: widthAnchor, multiplier: buttonWidthMultiplier),
+                choiceButton1.heightAnchor.constraint(equalTo: heightAnchor, multiplier: buttonHeightMultiplier),
+                choiceButton1.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: bottomPadding)
             ])
         }
+
         // Equal spacer heights for balanced layout
         spacer0.heightAnchor.constraint(equalTo: spacer1.heightAnchor).isActive = true
 
