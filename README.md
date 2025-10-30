@@ -32,6 +32,6 @@ Previewed on iPad Air 13 (Xcode Simulator)
 ## 🚀 How to Run
 1. Clone this repository
    ```bash
-   git clone https://github.com/ChiaKuo-Chen/PersonalityTest_UIKit.git)
+   git clone https://github.com/ChiaKuo-Chen/PersonalityTest_UIKit.git
 3. Open PersonalityTest_UIKit.xcodeproj in Xcode.
 4. Choose an iPhone simulator and click Run ▶️.
