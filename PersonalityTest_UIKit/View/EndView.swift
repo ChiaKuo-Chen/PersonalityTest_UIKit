@@ -79,29 +79,34 @@ class EndView: UIView {
         // Background setup
         backgroundImageView.image = UIImage(named: "BackGround")
         backgroundImageView.contentMode = .scaleAspectFill
-
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        upperView.translatesAutoresizingMaskIntoConstraints = false
+        rarityView.translatesAutoresizingMaskIntoConstraints = false
+        
         // Description (woodenUIView with animal description text)
         descriptionView = WoodenUIView(labelText: animal.description, horizontalPadding: 12)
+        descriptionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        friendsCardView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Back button ("Return to Home") styling
+        backButton.setTitle("回到首頁", for: .normal)
+        backButton.fontSize = Device.isPad ? 36 : 24
+        backButton.strokeWidth = 2
+        backButton.cornerRadius = 12.5
+        backButton.translatesAutoresizingMaskIntoConstraints = false
 
         // Author label at the bottom of the screen
         authorLabel.text = "Presented by Chia-Kuo Chen"
         authorLabel.font = .systemFont(ofSize: Device.isPad ? 26 : 22, weight: .black)
         authorLabel.textColor = .white
         authorLabel.textAlignment = .center
-
-        // Back button ("Return to Home") styling
-        backButton.setTitle("回到首頁", for: .normal)
-        backButton.fontSize = Device.isPad ? 36 : 24
-        backButton.strokeWidth = 2
-        backButton.cornerRadius = 12.5
+        authorLabel.translatesAutoresizingMaskIntoConstraints = false
     }
 
     // MARK: - Layout
     private func layout() {
-        // Disable AutoresizingMask
-        [backgroundImageView, upperView, rarityView, descriptionView, friendsCardView, backButton, authorLabel].forEach {
-            $0?.translatesAutoresizingMaskIntoConstraints = false
-        }
 
         // Add background image
         addSubview(backgroundImageView)

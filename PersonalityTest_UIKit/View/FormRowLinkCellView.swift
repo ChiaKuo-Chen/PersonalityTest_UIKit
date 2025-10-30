@@ -8,14 +8,14 @@
 //  Each cell shows an icon with colored background, a text label, and a disclosure indicator.
 //  When tapped, the cell opens the corresponding external URL in Safari.
 //
-//  It visually looks like this:
+//  It would look like this:
 //
 //     ┌─────────────────────────────────────────────┐
-//     │  [🔵]  Wiki                        >        │
-//     │   │     │                                │ │
-//     │   │ iconContainer (colored bg)           │ │
-//     │         └ iconView (UIImageView)         │ │
-//     │ label (UILabel)                          │ │
+//     │  [🔵]       Wiki                    >       │
+//     │   │           │                arrow.right  │
+//     │   │      iconBackGround                     │
+//     │   |        └ iconView (UIImageView)         │
+//     │ label (UILabel)                             │
 //     └─────────────────────────────────────────────┘
 //
 //  FormRowLinkView

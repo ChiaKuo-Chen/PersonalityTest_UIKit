@@ -10,15 +10,15 @@
 //  Each cell displays an icon with a gray background, a title label, and a value label
 //  aligned horizontally. This is used for app info such as version, developer, etc.
 //
-//  It visually looks like this:
+//  It would look like this:
 //
 //     ┌─────────────────────────────────────────────────────┐
-//     │  [🔘]  Application                PersonalityTest   │
-//     │   │     │                                         │ │
-//     │   │ iconBackGround (gray bg)                      │ │
-//     │         └ iconView (UIImageView)                  │ │
-//     │ titleLabel (UILabel)                              │ │
-//     │ valueLabel (UILabel, right-aligned)                │ │
+//     │  [🔘]         Application       PersonalityTest     │
+//     │   │               │                     |           │
+//     │   │         iconBackGround              |           │
+//     │   |           └ iconView                |           │
+//     │ titleLabel (UILabel)          valueLabel (UILabel)  │
+//     │                                                     │
 //     └─────────────────────────────────────────────────────┘
 //
 //  FormRowStaticCellView

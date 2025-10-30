@@ -43,6 +43,8 @@ extension UIBarButtonItem {
         button.backgroundColor = UIColor(hex: "#cd6133") // Wood orange
         button.setTitle("?", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.shadowColor = .black
+        button.titleLabel?.shadowOffset = CGSize(width: 0, height: Device.isPad ? 4 : 2)
         button.titleLabel?.font = UIFont.systemFont(
             ofSize: Device.isPad ? 32 : 26,
             weight: .heavy
@@ -52,8 +54,8 @@ extension UIBarButtonItem {
         button.layer.cornerRadius = Device.isPad ? 12 : 10
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: Device.isPad ? 4 : 2)
-        button.layer.shadowOpacity = 0.3
-        button.layer.shadowRadius = 2
+        button.layer.shadowOpacity = 1
+        button.layer.shadowRadius = 0
         
         // MARK: - Size
         NSLayoutConstraint.activate([
@@ -78,9 +80,8 @@ extension UIBarButtonItem {
     // Shrinks and darkens the button to simulate a tactile “wood press” feel.
     @objc private static func pressDown(_ sender: UIButton) {
         UIView.animate(withDuration: 0.1, delay: 0, options: [.curveEaseInOut]) {
-            sender.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             sender.backgroundColor = UIColor(hex: "#7a2e14") // Darker wood tone
-            sender.layer.shadowOpacity = 0.15
+            sender.layer.shadowOpacity = 0
         }
     }
     
@@ -88,9 +89,8 @@ extension UIBarButtonItem {
     // Restores the button’s brightness, size, and shadow intensity.
     @objc private static func pressUp(_ sender: UIButton) {
         UIView.animate(withDuration: 0.15, delay: 0, options: [.curveEaseInOut]) {
-            sender.transform = .identity
             sender.backgroundColor = UIColor(hex: "#cd6133") // Original wood color
-            sender.layer.shadowOpacity = 0.3
+            sender.layer.shadowOpacity = 1
         }
     }
 

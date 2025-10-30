@@ -53,12 +53,14 @@ class CoverView: UIView {
         // Background setup
         backgroundImageView.image = UIImage(named: "BackGround")
         backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         
         // TitleView setup (Hstack)
         titleView.axis = .horizontal
         titleView.alignment = .center
         titleView.distribution = .fill
         titleView.spacing = Device.isPad ? 40 : 20
+        titleView.translatesAutoresizingMaskIntoConstraints = false
         
         // Create title “動物占卜” with woodenUIView components
         let titleString = "動物占卜"
@@ -74,15 +76,11 @@ class CoverView: UIView {
         startButton.setTitle("測測看你是哪種動物？", for: .normal)
         startButton.fontSize = Device.isPad ? 36 : 24
         startButton.strokeWidth = 2
+        startButton.translatesAutoresizingMaskIntoConstraints = false
     }
     
     // MARK: - Layout
     private func layout() {
-        
-        // Disable AutoresizingMask
-        [backgroundImageView, titleView, startButton].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
 
         // Add background image
         addSubview(backgroundImageView)
